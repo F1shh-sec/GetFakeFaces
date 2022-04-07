@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -22,10 +23,20 @@ type imageLocation struct {
 var URL = "https://this-person-does-not-exist.com/en?new"
 
 var wg = sync.WaitGroup{}
+var NUMREQUEST int
+var TIME int
+
+func init() {
+	numreq := flag.Int("n", 50, "Number Of Requests To Make")
+	time := flag.Int("t", 1000, "Time between requests (in milliseconds)")
+	flag.Parse()
+	NUMREQUEST = *numreq
+	TIME = *time
+}
 
 func main() {
-	for i := 1; i < 1000; i++ {
-		time.Sleep(time.Duration(1000) * time.Millisecond)
+	for i := 1; i <= NUMREQUEST; i++ {
+		time.Sleep(time.Duration(TIME) * time.Millisecond)
 		go makeRequest(i)
 	}
 	wg.Wait()
