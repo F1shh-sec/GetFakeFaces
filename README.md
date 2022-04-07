@@ -1,4 +1,4 @@
-# GetFakeFaces
+# Get Fake Faces
 This tool will query and download images from: https://this-person-does-not-exist.com/en
 
 # Usage
